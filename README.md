@@ -32,6 +32,7 @@ Nedan är en liten roadmap för att lättare organisera projektet och hålla red
   - [x] Skapa Tjänst
   - [x] Redigera Tjänst
   - [x] Lägga Till/Ändra Pristyp, (Engång/Timpris)
+  - [ ] Skapa/Ändra Material Lista
   - [ ] Ändra Layout & Tjänst-listan
 
 - Lägga Till/Ändra Företags Information
