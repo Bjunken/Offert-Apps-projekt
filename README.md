@@ -51,3 +51,11 @@ Nedan är en liten roadmap för att lättare organisera projektet och hålla red
   - [ ] Apps-Villkor
   - [ ] Kontakt info
   - [ ] Inbjuds-länk, (QR-kod?)
+
+- Testing
+  - [ ] Testing via Dator
+  - [ ] Testing via mobil, (android)
+  - [ ] Fas 1 Testing av användare
+
+# Fas 2
+Utvecklar fas 2 mera senare.
