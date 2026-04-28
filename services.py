@@ -1,17 +1,21 @@
 import sqlite3
+import json
 
 DB = "app.db"
 
 
+# 📦 Datamodell
 class Service:
-    def __init__(self, id, name, price, price_type, description):
+    def __init__(self, id, name, price, price_type, description, materials):
         self.id = id
         self.name = name
         self.price = price
         self.price_type = price_type
         self.description = description
+        self.materials = materials or []
 
 
+# 🏗️ Skapa tabell
 def create_table():
     conn = sqlite3.connect(DB)
     c = conn.cursor()
@@ -22,7 +26,8 @@ def create_table():
         name TEXT,
         price REAL,
         price_type TEXT,
-        description TEXT
+        description TEXT,
+        materials TEXT
     )
     """)
 
@@ -30,19 +35,27 @@ def create_table():
     conn.close()
 
 
-def add_service(name, price, price_type, description):
+# ➕ Lägg till tjänst
+def add_service(name, price, price_type, description, materials):
     conn = sqlite3.connect(DB)
     c = conn.cursor()
 
     c.execute("""
-    INSERT INTO services (name, price, price_type, description)
-    VALUES (?, ?, ?, ?)
-    """, (name, price, price_type, description))
+    INSERT INTO services (name, price, price_type, description, materials)
+    VALUES (?, ?, ?, ?, ?)
+    """, (
+        name,
+        price,
+        price_type,
+        description,
+        json.dumps(materials)
+    ))
 
     conn.commit()
     conn.close()
 
 
+# 📋 Hämta alla tjänster
 def get_services():
     conn = sqlite3.connect(DB)
     c = conn.cursor()
@@ -58,22 +71,42 @@ def get_services():
             name=r[1],
             price=r[2],
             price_type=r[3],
-            description=r[4]
+            description=r[4],
+            materials=json.loads(r[5]) if r[5] else []
         ))
 
     conn.close()
     return services
 
 
-def update_service(id, name, price, price_type, description):
+# ✏️ Uppdatera tjänst
+def update_service(id, name, price, price_type, description, materials):
     conn = sqlite3.connect(DB)
     c = conn.cursor()
 
     c.execute("""
     UPDATE services
-    SET name=?, price=?, price_type=?, description=?
+    SET name=?, price=?, price_type=?, description=?, materials=?
     WHERE id=?
-    """, (name, price, price_type, description, id))
+    """, (
+        name,
+        price,
+        price_type,
+        description,
+        json.dumps(materials),
+        id
+    ))
+
+    conn.commit()
+    conn.close()
+
+
+# ❌ Ta bort tjänst
+def delete_service(service_id):
+    conn = sqlite3.connect(DB)
+    c = conn.cursor()
+
+    c.execute("DELETE FROM services WHERE id=?", (service_id,))
 
     conn.commit()
     conn.close()

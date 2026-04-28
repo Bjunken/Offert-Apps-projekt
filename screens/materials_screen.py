@@ -2,107 +2,111 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.textfield import MDTextField
+from kivymd.uix.scrollview import MDScrollView
 from kivymd.uix.label import MDLabel
 
-from materials import get_materials, add_material, update_material, delete_material
+from materials import add_material, get_materials, delete_material, update_material
 
 
 class MaterialsScreen(MDScreen):
 
     def on_enter(self):
-        self.editing_material = None
+        self.selected_material_id = None
         self.build_ui()
 
     def build_ui(self):
         self.clear_widgets()
 
-        layout = MDBoxLayout(orientation="vertical", padding=10, spacing=10)
+        root = MDBoxLayout(orientation="vertical", padding=10, spacing=10)
 
+        # INPUTS
         self.name_input = MDTextField(hint_text="Material namn")
         self.price_input = MDTextField(hint_text="Pris")
 
-        layout.add_widget(self.name_input)
-        layout.add_widget(self.price_input)
+        root.add_widget(self.name_input)
+        root.add_widget(self.price_input)
 
+        # KNAPPAR
         self.save_btn = MDRaisedButton(
             text="Lägg till material",
             on_release=lambda x: self.save_material()
         )
 
-        layout.add_widget(self.save_btn)
+        root.add_widget(self.save_btn)
 
-        self.materials_layout = MDBoxLayout(
+        # SCROLL LISTA
+        scroll = MDScrollView()
+        self.list_layout = MDBoxLayout(
             orientation="vertical",
-            spacing=5
+            size_hint_y=None
         )
+        self.list_layout.bind(minimum_height=self.list_layout.setter("height"))
 
-        layout.add_widget(self.materials_layout)
+        scroll.add_widget(self.list_layout)
+        root.add_widget(scroll)
 
-        layout.add_widget(MDRaisedButton(
+        root.add_widget(MDRaisedButton(
             text="Tillbaka",
             on_release=lambda x: self.go_back()
         ))
 
-        self.add_widget(layout)
+        self.add_widget(root)
 
         self.load_materials()
 
     def load_materials(self):
-        self.materials_layout.clear_widgets()
+        self.list_layout.clear_widgets()
 
         for m in get_materials():
             row = MDBoxLayout(size_hint_y=None, height=40)
 
-            label = MDLabel(text=f"{m.name} - {m.price} kr")
+            row.add_widget(MDLabel(text=f"{m.name} - {m.price} kr"))
 
-            edit_btn = MDRaisedButton(
+            row.add_widget(MDRaisedButton(
                 text="Redigera",
-                on_release=lambda x, mat=m: self.edit_material(mat)
-            )
+                size_hint_x=0.3,
+                on_release=lambda x, m=m: self.fill_form(m)
+            ))
 
-            delete_btn = MDRaisedButton(
+            row.add_widget(MDRaisedButton(
                 text="Ta bort",
-                on_release=lambda x, mat=m: self.delete_material(mat)
-            )
+                size_hint_x=0.3,
+                on_release=lambda x, m=m: self.delete_material(m.id)
+            ))
 
-            row.add_widget(label)
-            row.add_widget(edit_btn)
-            row.add_widget(delete_btn)
+            self.list_layout.add_widget(row)
 
-            self.materials_layout.add_widget(row)
-
-    def save_material(self):
-        name = self.name_input.text
-        try:
-            price = float(self.price_input.text)
-        except:
-            price = 0
-
-        if not name:
-            return
-
-        if self.editing_material:
-            update_material(self.editing_material.id, name, price)
-            self.editing_material = None
-            self.save_btn.text = "Lägg till material"
-        else:
-            add_material(name, price)
-
-        self.name_input.text = ""
-        self.price_input.text = ""
-
-        self.load_materials()
-
-    def edit_material(self, material):
-        self.editing_material = material
+    def fill_form(self, material):
+        self.selected_material_id = material.id
 
         self.name_input.text = material.name
         self.price_input.text = str(material.price)
 
-        self.save_btn.text = "Uppdatera material"
+        self.save_btn.text = "Spara ändring"
 
-    def delete_material(self, material):
-        delete_material(material.id)
+    def save_material(self):
+        name = self.name_input.text.strip()
+
+        try:
+            price = float(self.price_input.text)
+        except:
+            return
+
+        if self.selected_material_id:
+            update_material(self.selected_material_id, name, price)
+        else:
+            add_material(name, price)
+
+        # töm fälten
+        self.selected_material_id = None
+        self.name_input.text = ""
+        self.price_input.text = ""
+        self.save_btn.text = "Lägg till material"
+
+        self.load_materials()
+
+    def delete_material(self, material_id):
+        delete_material(material_id)
         self.load_materials()
 
     def go_back(self):
