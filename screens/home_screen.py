@@ -1,11 +1,10 @@
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.button import MDRaisedButton
-from kivymd.uix.label import MDLabel
 from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.button import MDRaisedButton
 
-from services import get_services
 
 class HomeScreen(MDScreen):
+
     def on_enter(self):
         self.build_ui()
 
@@ -15,55 +14,39 @@ class HomeScreen(MDScreen):
         layout = MDBoxLayout(
             orientation="vertical",
             padding=20,
-            spacing=20
+            spacing=15
         )
 
-        # Titel
-        title = MDLabel(
-            text="Offert App",
-            halign="center",
-            font_style="H4"
+        # 🏠 Titel (valfri, kan stylas senare)
+        layout.add_widget(
+            MDRaisedButton(
+                text="Skapa Offert",
+                on_release=lambda x: self.go_to("quote")
+            )
         )
 
-        # Info
-        services = get_services()
-        info = MDLabel(
-            text=f"Du har {len(services)} tjänster sparade",
-            halign="center"
+        layout.add_widget(
+            MDRaisedButton(
+                text="Tjänster",
+                on_release=lambda x: self.go_to("services")
+            )
         )
 
-        # Knappar
-        btn_quote = MDRaisedButton(
-            text="Skapa offert",
-            pos_hint={"center_x": 0.5},
-            on_release=lambda x: self.go_to_quote()
+        layout.add_widget(
+            MDRaisedButton(
+                text="Material",
+                on_release=lambda x: self.go_to("materials")
+            )
         )
 
-        btn_services = MDRaisedButton(
-            text="Hantera tjänster",
-            pos_hint={"center_x": 0.5},
-            on_release=lambda x: self.go_to_services()
+        layout.add_widget(
+            MDRaisedButton(
+                text="Inställningar",
+                on_release=lambda x: self.go_to("settings")
+            )
         )
-
-        btn_settings = MDRaisedButton(
-            text="Inställningar",
-            pos_hint={"center_x": 0.5},
-            on_release=lambda x: self.go_to_settings()
-        )
-
-        layout.add_widget(title)
-        layout.add_widget(info)
-        layout.add_widget(btn_quote)
-        layout.add_widget(btn_services)
-        layout.add_widget(btn_settings)
 
         self.add_widget(layout)
 
-    def go_to_services(self):
-        self.manager.current = "services"
-
-    def go_to_quote(self):
-        self.manager.current = "quote"
-    
-    def go_to_settings(self):
-        self.manager.current = "settings"
+    def go_to(self, screen_name):
+        self.manager.current = screen_name

@@ -1,32 +1,79 @@
-from db import SessionLocal, Service
+import sqlite3
 
-def add_service(name, description, price, price_type):
-    session = SessionLocal()
-    service = Service(
-        name=name,
-        description=description,
-        price=price,
-        price_type=price_type
+DB = "app.db"
+
+
+class Service:
+    def __init__(self, id, name, price, price_type, description):
+        self.id = id
+        self.name = name
+        self.price = price
+        self.price_type = price_type
+        self.description = description
+
+
+def create_table():
+    conn = sqlite3.connect(DB)
+    c = conn.cursor()
+
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS services (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        price REAL,
+        price_type TEXT,
+        description TEXT
     )
-    session.add(service)
-    session.commit()
-    session.close()
+    """)
 
-def update_service(service_id, name, description, price, price_type):
-    session = SessionLocal()
-    service = session.query(Service).filter(Service.id == service_id).first()
+    conn.commit()
+    conn.close()
 
-    if service:
-        service.name = name
-        service.description = description
-        service.price = price
-        service.price_type = price_type
-        session.commit()
 
-    session.close()
+def add_service(name, price, price_type, description):
+    conn = sqlite3.connect(DB)
+    c = conn.cursor()
+
+    c.execute("""
+    INSERT INTO services (name, price, price_type, description)
+    VALUES (?, ?, ?, ?)
+    """, (name, price, price_type, description))
+
+    conn.commit()
+    conn.close()
+
 
 def get_services():
-    session = SessionLocal()
-    services = session.query(Service).all()
-    session.close()
+    conn = sqlite3.connect(DB)
+    c = conn.cursor()
+
+    c.execute("SELECT * FROM services")
+    rows = c.fetchall()
+
+    services = []
+
+    for r in rows:
+        services.append(Service(
+            id=r[0],
+            name=r[1],
+            price=r[2],
+            price_type=r[3],
+            description=r[4]
+        ))
+
+    conn.close()
     return services
+
+
+def update_service(id, name, price, price_type, description):
+    conn = sqlite3.connect(DB)
+    c = conn.cursor()
+
+    c.execute("""
+    UPDATE services
+    SET name=?, price=?, price_type=?, description=?
+    WHERE id=?
+    """, (name, price, price_type, description, id))
+
+    conn.commit()
+    conn.close()

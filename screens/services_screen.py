@@ -81,20 +81,9 @@ class ServicesScreen(MDScreen):
             price = float(self.price_input.text)
 
             if self.selected_service_id:
-                update_service(
-                    self.selected_service_id,
-                    name,
-                    desc,
-                    price,
-                    self.selected_price_type
-                )
+                update_service(self.selected_service_id, name, price, self.selected_price_type, desc)
             else:
-                add_service(
-                    name,
-                    desc,
-                    price,
-                    self.selected_price_type
-                )
+                add_service(name, price, self.selected_price_type, desc)
 
             self.reset_form()
             self.load_services()
