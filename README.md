@@ -16,7 +16,7 @@ Nedan är en liten roadmap för att lättare organisera projektet och hålla red
 - Skapa Offert
   - [x] Förhandsgranska Offert
   - [x] Kryssa i Tjänster
-  - [ ] Kryssa i Material-listan, (välja extra material)
+  - [x] Kryssa i Material-listan, (välja extra material)
   - [x] Calc Total Summa + MOMS
   - [x] Spara som PDF-fil
   - [x] Automatisk Öppning av PDF-fil
@@ -32,7 +32,7 @@ Nedan är en liten roadmap för att lättare organisera projektet och hålla red
   - [x] Skapa Tjänst
   - [x] Redigera Tjänst
   - [x] Lägga Till/Ändra Pristyp, (Engång/Timpris)
-  - [ ] Skapa/Ändra Material Lista
+  - [x] Skapa/Ändra Material Lista
   - [ ] Ändra Layout & Tjänst-listan
 
 - Lägga Till/Ändra Företags Information
