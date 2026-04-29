@@ -20,7 +20,7 @@ Nedan är en liten roadmap för att lättare organisera projektet och hålla red
   - [x] Calc Total Summa + MOMS
   - [x] Spara som PDF-fil
   - [x] Automatisk Öppning av PDF-fil
-  - [ ] Lägg Till Rabatt, (%-form)
+  - [x] Lägg Till Rabatt, (%-form)
   - [ ] Ändra Layout
 
 - Skapade Offerter
