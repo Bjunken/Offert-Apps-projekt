@@ -60,3 +60,7 @@ Nedan är en liten roadmap för att lättare organisera projektet och hålla red
 
 # Fas 2
 Utvecklar fas 2 mera senare.
+
+# Idéer
+- Skicka pdf via email direkt
+- Lägg till org nummer
