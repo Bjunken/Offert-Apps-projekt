@@ -432,6 +432,9 @@
   ('colorsys',
    'C:\\Users\\Linus\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\colorsys.py',
    'PYMODULE'),
+  ('company_info',
+   'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps projekt\\company_info.py',
+   'PYMODULE'),
   ('concurrent',
    'C:\\Users\\Linus\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\concurrent\\__init__.py',
    'PYMODULE'),
@@ -3445,9 +3448,21 @@
    'C:\\Users\\Linus\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\runpy.py',
    'PYMODULE'),
   ('screens', '-', 'PYMODULE'),
+  ('screens.company_info_screen',
+   'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps '
+   'projekt\\screens\\company_info_screen.py',
+   'PYMODULE'),
+  ('screens.gamla_offerter_screen',
+   'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps '
+   'projekt\\screens\\gamla_offerter_screen.py',
+   'PYMODULE'),
   ('screens.home_screen',
    'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps '
    'projekt\\screens\\home_screen.py',
+   'PYMODULE'),
+  ('screens.installningar_screen',
+   'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps '
+   'projekt\\screens\\installningar_screen.py',
    'PYMODULE'),
   ('screens.materials_screen',
    'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps '
@@ -3461,10 +3476,6 @@
    'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps '
    'projekt\\screens\\services_screen.py',
    'PYMODULE'),
-  ('screens.settings_screen',
-   'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps '
-   'projekt\\screens\\settings_screen.py',
-   'PYMODULE'),
   ('secrets',
    'C:\\Users\\Linus\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\secrets.py',
    'PYMODULE'),
@@ -3473,9 +3484,6 @@
    'PYMODULE'),
   ('services',
    'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps projekt\\services.py',
-   'PYMODULE'),
-  ('settings',
-   'C:\\Users\\Linus\\Desktop\\repos\\Offert Apps projekt\\settings.py',
    'PYMODULE'),
   ('shlex',
    'C:\\Users\\Linus\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\shlex.py',
