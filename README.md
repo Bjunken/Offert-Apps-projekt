@@ -42,7 +42,7 @@ Nedan är en liten roadmap för att lättare organisera projektet och hålla red
   - [x] Email
   - [x] Betalningsvillkor
   - [x] Betalningssätt
-  - [ ] Uppladdning av Företags Logo
+  - [x] Uppladdning av Företags Logo
   - [ ] Ändra Layout
 
 - Inställningar
