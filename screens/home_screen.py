@@ -17,34 +17,20 @@ class HomeScreen(MDScreen):
             spacing=15
         )
 
-        # 🏠 Titel (valfri, kan stylas senare)
-        layout.add_widget(
-            MDRaisedButton(
-                text="Skapa Offert",
-                on_release=lambda x: self.go_to("quote")
-            )
-        )
+        buttons = [
+            ("Skapa Offert",        "quote"),
+            ("Gamla Offerter",      "gamla_offerter"),
+            ("Tjänster",            "services"),
+            ("Material",            "materials"),
+            ("Företags Information","settings"),
+            ("Inställningar",       "installningar"),
+        ]
 
-        layout.add_widget(
-            MDRaisedButton(
-                text="Tjänster",
-                on_release=lambda x: self.go_to("services")
-            )
-        )
-
-        layout.add_widget(
-            MDRaisedButton(
-                text="Material",
-                on_release=lambda x: self.go_to("materials")
-            )
-        )
-
-        layout.add_widget(
-            MDRaisedButton(
-                text="Inställningar",
-                on_release=lambda x: self.go_to("settings")
-            )
-        )
+        for text, screen in buttons:
+            layout.add_widget(MDRaisedButton(
+                text=text,
+                on_release=lambda x, s=screen: self.go_to(s)
+            ))
 
         self.add_widget(layout)
 

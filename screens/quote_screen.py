@@ -12,7 +12,7 @@ from kivy.uix.widget import Widget
 from services import get_services
 from materials import get_materials
 from pdf_generator import generate_pdf
-from settings import load_settings
+from company_info import load_settings
 
 
 class WhiteCard(MDBoxLayout):
