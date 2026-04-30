@@ -5,7 +5,7 @@ Tanken med detta projekt är att användaren ska snabbt och enkelt kunna göra e
 # Projekt Faser
 Nedan är en liten roadmap för att lättare organisera projektet och hålla reda på vart projektet är just nu.
 ## Fas 1
-- Fönster för Hem / Skapa Offert / Skapade Offerter / Tjänster / Företags Information / Inställningar
+- Fönster för Hem / Skapa Offert / Gamla Offerter / Tjänster / Företags Information / Inställningar
   - [ ] Hem, (Saknar layout)
   - [ ] Skapa Offert, (Saknar layout)
   - [ ] Skapade Offerter, (Ej skapad)
@@ -23,10 +23,10 @@ Nedan är en liten roadmap för att lättare organisera projektet och hålla red
   - [x] Lägg Till Rabatt, (%-form)
   - [ ] Ändra Layout
 
-- Skapade Offerter
-  - [ ] Lista Gamla Offerter
-  - [ ] Visa Vem Som Skapade Offerten, samt Vem Den Skickades Till, (om via mejl eller appen)
-  - [ ] Rensa Offerter, (knapp för att rensa gamla offerter)
+- Gamla Offerter
+  - [x] Lista Gamla Offerter
+  - [x] Visa Vem Som Skapade Offerten, samt Vem Den Skickades Till, (om via mejl eller appen)
+  - [x] Rensa Offerter, (knapp för att rensa gamla offerter)
 
 - Skapa/Redigera Tjänster
   - [x] Skapa Tjänst
